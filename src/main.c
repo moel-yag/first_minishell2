@@ -38,6 +38,8 @@ int main(void)
         //     free(tokens);
         // }
 
+        if (!pipe_syntax(input) || !file_syntax(input))
+            return (false);
         free(input); // Free input after processing
     }
 
