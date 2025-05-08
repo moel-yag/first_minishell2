@@ -57,3 +57,22 @@ void    print_syntax_error()
     // extern int g_exit_status;
     // g_exit_status = 2;
 }
+
+void free_lexer(t_lexer **lexer)
+{
+    t_lexer *current;
+    t_lexer *next;
+
+    if (!lexer || !*lexer)
+        return;
+
+    current = *lexer;
+    while (current)
+    {
+        next = current->next;
+        free(current->value); // Free the token value
+        free(current);        // Free the lexer node
+        current = next;
+    }
+    *lexer = NULL; // Set the pointer to NULL to avoid dangling references
+}
